@@ -1,0 +1,33 @@
+# air.toml
+
+# Entrypoint file or directory.
+root = "." 
+
+[build]
+  # For environment variables
+  # "ENV_VAR" = "value"
+
+  # Override the default build command.
+  # The default value is "go build -o ./tmp/main ."
+  cmd = "go build -o ./tmp/main ."
+
+  # Binary filename.
+  binary = "./tmp/main"
+
+  # Watch these filename extensions.
+  # Default value is `[".go", ".tpl", ".tmpl", ".html"]`.
+  # If you modify it, the value should contain ".go" too.
+  include_ext = [".go", ".html", ".tmpl"]
+
+  # Exclude the following paths.
+  # Default value is `["./tmp/**/*", "./vendor/**/*"]`.
+  # Exclude files not directories.
+  exclude_dir = ["./tmp", "./vendor"]
+
+# Customize your watch list.
+[watch]
+  # watch these files for restart
+  dirs = ["."]
+
+  # These file changes will not trigger build process.
+  exclude = [""]

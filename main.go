@@ -5,9 +5,16 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 type UserController struct{}
+
+type Todo struct {
+	gorm.Model
+	Title       string `json:"title"`
+	Description string `json:"description"`
+}
 
 func (uc *UserController) GetUserInfo(c *gin.Context) {
 	userID := c.Param("id")

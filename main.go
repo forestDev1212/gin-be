@@ -7,6 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type UserController struct{}
+
+func (uc *UserController) GetUserInfo(c *gin.Context) {
+	userID := c.Param("id")
+	c.JSON(200, gin.H{"id": userID, "username": "forestDev"})
+}
+
 func LoggerMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		start := time.Now()
@@ -31,7 +38,11 @@ func AuthMiddleware() gin.HandlerFunc {
 func main() {
 	router := gin.Default()
 
+	userController := &UserController{}
+
 	router.Use(LoggerMiddleware())
+
+	router.GET("/user/:id", userController.GetUserInfo)
 
 	router.GET("/", func(c *gin.Context) {
 		c.String(200, "Hello, World")
